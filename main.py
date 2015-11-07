@@ -1,4 +1,4 @@
-from utils import verifie_point, addition_points, double_and_add, groupe_des_points
+from utils import verifie_point, addition_points, double_and_add, groupe_des_points, generateur_du_groupe
 
 if __name__ == "__main__":
     print "Hello world!"
@@ -20,3 +20,6 @@ if __name__ == "__main__":
 
     print "F5 :", len(groupe_des_points(3, 2, 5))
     print "F11 :", len(groupe_des_points(1, 2, 11))
+
+    print "F5 :", len(generateur_du_groupe(3, 2, 5))
+    print "F11 :", len(generateur_du_groupe(1, 2, 11))

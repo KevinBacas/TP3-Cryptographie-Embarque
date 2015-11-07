@@ -78,3 +78,20 @@ def groupe_des_points(A, B, p):
             if verifie_point(A, B, p, point):
                 res.append(point)
     return res
+
+def generateur_du_groupe(A, B, p):
+    res = []
+    points = groupe_des_points(A, B, p)
+    nb_points = len(points)
+    for point in points:
+        stillLoop = True
+        counter = 0
+        point_tmp = (0,0)
+        while stillLoop:
+            counter += 1
+            point_tmp = addition_points(A, B, p, point_tmp, point)
+            if point_tmp == (0,0):
+                stillLoop = False
+        if counter == nb_points:
+            res.append(point)
+    return res
