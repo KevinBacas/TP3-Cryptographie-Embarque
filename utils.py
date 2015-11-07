@@ -1,11 +1,36 @@
 import math
 
+# IMPORT TP2
+def pgcd(a, b):
+    while b != 0:
+        r = a % b
+        a = b
+        b = r
+    return a
+
+def bezout(a, b):
+    (u0, u1) = (1, 0)
+    (v0, v1) = (0, 1)
+    while b != 0:
+        r = a % b
+        q = (a - r) / b
+        (a, b) = (b, r)
+        (u0, u1) = (u1, u0 - q*u1)
+        (v0, v1) = (v1, v0 - q*v1)
+    return (a, u0, v0) if a > 0 else (-a, -u0, -v0)
+
+def inverse(a, n):
+	res = 0
+	if n > 1 and pgcd(a, n) == 1:
+		(a, u0, v0) = bezout(a, n)
+		res = u0 % n
+	# TODO: Afficher un message d'erreur si res == 0
+	return res
+
 def verifie_point(A, B, p, P):
     res = False
-    x = P[0]
-    y = P[1]
-    z = P[2]
-    if z != 0:
+    if P != (0, 0):
+        x, y = P
         # Calcul y^2
         left_op = math.pow(y, 2) % p
         # Calcul X^3 + AX + B
@@ -16,4 +41,24 @@ def verifie_point(A, B, p, P):
     return res
 
 def addition_points(A, B, p, P, Q):
-    pass
+    Px, Py = P
+    Qx, Qy = Q
+    res = (0,0)
+    if P == (0,0):
+        res = Q
+    elif Q == (0,0):
+        res = P
+    elif Px != Qx:
+        lamb = ((Qy-Py)*inverse((Qx-Px), p)) % p
+        resx = (math.pow(lamb, 2)-Px-Qx) % p
+        resy = (lamb*(Px-resx)-Py) % p
+        res = (resx,resy)
+    elif Py == Qy:
+        if Py != 0:
+            lamb = ((3*math.pow(Px, 2)+A)*inverse(2*Py, p)) % p
+            resx = (math.pow(lamb, 2)-Px-Px) % p
+            resy = (lamb*(Px-resx)-Py) % p
+            res = (resx,resy)
+        else:
+            res = (0,0)
+    return res
