@@ -59,6 +59,13 @@ def addition_points(A, B, p, P, Q):
             resx = (math.pow(lamb, 2)-Px-Px) % p
             resy = (lamb*(Px-resx)-Py) % p
             res = (resx,resy)
-        else:
-            res = (0,0)
+    return res
+
+def double_and_add(A, B, p, P, k):
+    res = (0,0)
+    b = bin(k)[2:]
+    for di in b:
+        res = addition_points(A, B, p, res, res)
+        if (di) == "1":
+            res = addition_points(A, B, p, P, res)
     return res

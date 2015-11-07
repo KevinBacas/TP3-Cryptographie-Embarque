@@ -1,4 +1,4 @@
-from utils import verifie_point, addition_points
+from utils import verifie_point, addition_points, double_and_add
 
 if __name__ == "__main__":
     print "Hello world!"
@@ -13,3 +13,7 @@ if __name__ == "__main__":
     print "(2,1) + (1,1) =", addition_points(3, 2, 5, (2,1), (1,1))
     print "(2,1) + (1,4) =", addition_points(3, 2, 5, (2,1), (1,4))
     print "(1,4) + (1,4) =", addition_points(3, 2, 5, (1,4), (1,4))
+
+    P = (2,4)
+    for i in xrange(6):
+        print i, "*", P, "=", double_and_add(3, 2, 5, P, i)
