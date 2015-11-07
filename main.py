@@ -1,4 +1,4 @@
-from utils import verifie_point, addition_points, double_and_add
+from utils import verifie_point, addition_points, double_and_add, groupe_des_points
 
 if __name__ == "__main__":
     print "Hello world!"
@@ -17,3 +17,6 @@ if __name__ == "__main__":
     P = (2,4)
     for i in xrange(6):
         print i, "*", P, "=", double_and_add(3, 2, 5, P, i)
+
+    print "F5 :", len(groupe_des_points(3, 2, 5))
+    print "F11 :", len(groupe_des_points(1, 2, 11))

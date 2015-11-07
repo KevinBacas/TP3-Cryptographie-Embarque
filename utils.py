@@ -69,3 +69,12 @@ def double_and_add(A, B, p, P, k):
         if (di) == "1":
             res = addition_points(A, B, p, P, res)
     return res
+
+def groupe_des_points(A, B, p):
+    res = []
+    for x in xrange(p):
+        for y in xrange(p):
+            point = (x,y)
+            if verifie_point(A, B, p, point):
+                res.append(point)
+    return res
